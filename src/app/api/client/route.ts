@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-const {Client} = require("pg")
-import dotenv from 'dotenv';
+const { Client } = require("pg");
+import dotenv from "dotenv";
 
 dotenv.config();
 const client = new Client({
@@ -9,35 +9,35 @@ const client = new Client({
 
 client.connect();
 
-export async function GET(){
+export async function GET() {
     try {
         const res = await client.query('SELECT * FROM "pakin019" ORDER BY id ASC LIMIT 1');
-        return new Response(JSON.stringify(res.rows), {
+        return NextResponse.json(res.rows, {
             status: 200,
-            headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+            headers: { "Access-Control-Allow-Origin": "*" },
         });
     } catch (error) {
         console.error(error);
-        return new Response(JSON.stringify({ error: 'Internal Server Error' }), {
+        return NextResponse.json({ error: "Internal Server Error" }, {
             status: 500,
-            headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+            headers: { "Access-Control-Allow-Origin": "*" },
         });
     }
 }
 
-export async function PUT(req: Request){
+export async function PUT(req: Request) {
     try {
-        const {tbl_led} = await req.json();
+        const { tbl_led } = await req.json();
         const res = await client.query('UPDATE "pakin019" SET tbl_led = $1 RETURNING *', [tbl_led]);
-        return new Response(JSON.stringify(res.rows[0]), {
+        return NextResponse.json(res.rows[0], {
             status: 200,
-            headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+            headers: { "Access-Control-Allow-Origin": "*" },
         });
     } catch (error) {
         console.error(error);
-        return new Response(JSON.stringify({ error: 'Internal Server Error' }), {
+        return NextResponse.json({ error: "Internal Server Error" }, {
             status: 500,
-            headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+            headers: { "Access-Control-Allow-Origin": "*" },
         });
     }
 }
