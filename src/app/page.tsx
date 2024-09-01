@@ -11,13 +11,13 @@ export default function Home() {
 
   const [items, setItems] = useState([]);
 
-  const buzzeraction = (id: number, tbl_led: number) => {
+  const buzzeraction = (tbl_led: number) => {
     fetch('/api/client', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ id, tbl_led })
+      body: JSON.stringify({tbl_led })
     })
   }
 
@@ -61,7 +61,7 @@ export default function Home() {
               </div>
               <div>
                 <Button className="w-full"
-                  onClick={() => buzzeraction(item.id, item.tbl_led == 0 ? 1 : 0)}
+                  onClick={() => buzzeraction(item.tbl_led == 0 ? 1 : 0)}
                 >
                   {item.tbl_led  == 0 ? "LED ON" : "LED OFF"}
                 </Button>
