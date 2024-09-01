@@ -4,7 +4,7 @@ import { Data } from "@/types/Data";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import React, { useEffect, useState } from "react";
-import { Bell, Gauge, Volume2 } from "lucide-react";
+import { Bell, Gauge, Sun, Volume2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 export default function Home() {
@@ -53,8 +53,8 @@ export default function Home() {
             </CardHeader>
             <CardContent className="flex flex-col justify-center">
               <div className="flex items-center mb-4">
-                <Volume2 className="mr-2 h-4 w-4" />
-                <p className="text-sm font-medium">Ultrasonic Value:</p>
+                <Sun className="mr-2 h-4 w-4" />
+                <p className="text-sm font-medium">LDR:</p>
                 <Badge variant="secondary" className="ml-auto">
                   {item.light_value} Lux
                 </Badge>
