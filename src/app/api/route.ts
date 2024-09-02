@@ -28,7 +28,7 @@ export async function POST(req: Request) {
 
 export async function GET(){
     try {
-        const res = await client.query('SELECT * FROM "pakin019" ORDER BY id DESC LIMIT 1');
+        const res = await client.query('SELECT * FROM "Knc001" ORDER BY id DESC LIMIT 1');
         return new Response(JSON.stringify(res.rows), {
             status: 200,
             headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
