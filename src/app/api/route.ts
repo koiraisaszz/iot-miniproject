@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     try {
         const { light_value, tbl_led} = await req.json();
         // Hash password
-        const res = await client.query('INSERT INTO "pakin019" (light_value, tbl_led) VALUES ($1, $2) RETURNING *', [light_value, tbl_led]);
+        const res = await client.query('INSERT INTO "iot" (light_value, tbl_led) VALUES ($1, $2) RETURNING *', [light_value, tbl_led]);
         return new Response(JSON.stringify(res.rows[0]), {
             status: 201,
             headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
@@ -28,7 +28,7 @@ export async function POST(req: Request) {
 
 export async function GET(){
     try {
-        const res = await client.query('SELECT * FROM "Knc001" ORDER BY id DESC LIMIT 1');
+        const res = await client.query('SELECT * FROM "iot" ORDER BY id DESC LIMIT 1');
         return new Response(JSON.stringify(res.rows), {
             status: 200,
             headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
